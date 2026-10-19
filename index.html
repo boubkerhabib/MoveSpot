@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoveSpot | Réservation de cours</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="index.html" class="text-xl font-extrabold tracking-tight text-teal-700">MoveSpot</a>
+      <nav class="flex gap-4 text-sm font-medium">
+        <a href="index.html" class="text-teal-700">Réserver</a>
+        <!-- TODO Partie 2 : ajoutez ici le lien vers « Mes réservations » -->
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl space-y-10 px-4 py-8">
+
+    <!-- ===== 1. Catalogue des cours ===== -->
+    <section aria-labelledby="titre-cours">
+      <h2 id="titre-cours" class="mb-4 text-2xl font-bold text-slate-900">Choisissez un cours</h2>
+      <!-- Conteneur à manipuler : les cartes ci-dessous sont des MODÈLES HTML -->
+      <div id="courses-container" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-2 ring-teal-600 transition hover:shadow-md" data-id="yoga">
+            <img src="assets/images/yoga.svg" alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">Yoga</span>
+              <h3 class="text-lg font-semibold text-slate-900">Yoga Flow</h3>
+              <p class="text-sm text-slate-600">60 min, avec Camille Roux</p>
+              <p class="pt-1 text-base font-bold text-slate-900">12 € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="hiit">
+            <img src="assets/images/hiit.svg" alt="Visuel du cours HIIT Express" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">Cardio</span>
+              <h3 class="text-lg font-semibold text-slate-900">HIIT Express</h3>
+              <p class="text-sm text-slate-600">45 min, avec Malik Benali</p>
+              <p class="pt-1 text-base font-bold text-slate-900">10 € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="crossfit">
+            <img src="assets/images/crossfit.svg" alt="Visuel du cours Cross Training" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">Musculation</span>
+              <h3 class="text-lg font-semibold text-slate-900">Cross Training</h3>
+              <p class="text-sm text-slate-600">50 min, avec Inès Moreau</p>
+              <p class="pt-1 text-base font-bold text-slate-900">14 € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="pilates">
+            <img src="assets/images/pilates.svg" alt="Visuel du cours Pilates Core" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">Pilates</span>
+              <h3 class="text-lg font-semibold text-slate-900">Pilates Core</h3>
+              <p class="text-sm text-slate-600">55 min, avec Théo Garnier</p>
+              <p class="pt-1 text-base font-bold text-slate-900">11 € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+      </div>
+    </section>
+
+    <!-- ===== 2. Créneaux ===== -->
+    <section aria-labelledby="titre-creneaux">
+      <h2 id="titre-creneaux" class="mb-1 text-2xl font-bold text-slate-900">Choisissez un créneau</h2>
+      <p id="selected-course-title" class="mb-4 text-sm text-slate-600">Yoga Flow</p>
+      <div id="slots-container" class="flex flex-wrap gap-3">
+          <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id="lundi-18:30">
+            Lundi <span class="font-normal">18:30</span>
+          </button>
+          <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="mercredi-12:30">
+            Mercredi <span class="font-normal">12:30</span>
+          </button>
+          <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="vendredi-19:00">
+            Vendredi <span class="font-normal">19:00</span>
+          </button>
+      </div>
+    </section>
+
+    <!-- ===== 3. Plan de la salle + 4. Récapitulatif ===== -->
+    <div class="grid gap-8 lg:grid-cols-3">
+
+      <section aria-labelledby="titre-salle" class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 lg:col-span-2">
+        <h2 id="titre-salle" class="mb-4 text-2xl font-bold text-slate-900">Plan de la salle</h2>
+        <div class="mb-6 rounded-lg bg-slate-800 py-2 text-center text-xs font-medium text-slate-200">Espace du coach</div>
+
+        <!-- Plan prévu pour 5 rangées (A à E) de 6 tapis -->
+        <div id="seats-container" class="mx-auto grid max-w-md grid-cols-6 gap-2">
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="A1" aria-label="Tapis A1 libre">A1</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition cursor-not-allowed bg-slate-300 text-slate-500" data-id="A2" disabled aria-label="Tapis A2 occupé">A2</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="A3" aria-label="Tapis A3 libre">A3</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="A4" aria-label="Tapis A4 libre">A4</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="A5" aria-label="Tapis A5 libre">A5</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="A6" aria-label="Tapis A6 libre">A6</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="B1" aria-label="Tapis B1 libre">B1</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="B2" aria-label="Tapis B2 libre">B2</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition cursor-not-allowed bg-slate-300 text-slate-500" data-id="B3" disabled aria-label="Tapis B3 occupé">B3</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition cursor-not-allowed bg-slate-300 text-slate-500" data-id="B4" disabled aria-label="Tapis B4 occupé">B4</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="B5" aria-label="Tapis B5 libre">B5</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="B6" aria-label="Tapis B6 libre">B6</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="C1" aria-label="Tapis C1 libre">C1</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="C2" aria-label="Tapis C2 libre">C2</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition bg-teal-600 text-white shadow" data-id="C3" aria-label="Tapis C3 sélectionné">C3</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="C4" aria-label="Tapis C4 libre">C4</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="C5" aria-label="Tapis C5 libre">C5</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="C6" aria-label="Tapis C6 libre">C6</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition cursor-not-allowed bg-slate-300 text-slate-500" data-id="D1" disabled aria-label="Tapis D1 occupé">D1</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="D2" aria-label="Tapis D2 libre">D2</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="D3" aria-label="Tapis D3 libre">D3</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="D4" aria-label="Tapis D4 libre">D4</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="D5" aria-label="Tapis D5 libre">D5</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="D6" aria-label="Tapis D6 libre">D6</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="E1" aria-label="Tapis E1 libre">E1</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="E2" aria-label="Tapis E2 libre">E2</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="E3" aria-label="Tapis E3 libre">E3</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="E4" aria-label="Tapis E4 libre">E4</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition cursor-not-allowed bg-slate-300 text-slate-500" data-id="E5" disabled aria-label="Tapis E5 occupé">E5</button>
+            <button type="button" class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-white text-slate-700 hover:border-teal-600" data-id="E6" aria-label="Tapis E6 libre">E6</button>
+        </div>
+
+        <ul class="mt-6 flex flex-wrap justify-center gap-5 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><span class="h-4 w-4 rounded border border-slate-300 bg-white"></span>Libre</li>
+          <li class="flex items-center gap-2"><span class="h-4 w-4 rounded bg-teal-600"></span>Sélectionné</li>
+          <li class="flex items-center gap-2"><span class="h-4 w-4 rounded bg-slate-300"></span>Occupé</li>
+        </ul>
+      </section>
+
+      <aside aria-labelledby="titre-recap" class="h-fit rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <h2 id="titre-recap" class="mb-4 text-2xl font-bold text-slate-900">Récapitulatif</h2>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between gap-4"><dt class="text-slate-500">Cours</dt><dd id="summary-course" class="font-medium">Yoga Flow</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500">Créneau</dt><dd id="summary-slot" class="font-medium">Lundi 18:30</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500">Emplacements</dt><dd id="summary-seats" class="font-medium">C3</dd></div>
+          <div class="flex justify-between gap-4"><dt class="text-slate-500">Nombre de places</dt><dd id="summary-count" class="font-medium">1</dd></div>
+          <div class="flex justify-between gap-4 border-t border-slate-200 pt-3 text-base"><dt class="font-semibold">Total</dt><dd id="summary-total" class="font-bold text-teal-700">12 €</dd></div>
+        </dl>
+
+        <button id="confirm-button" type="button" class="mt-6 w-full rounded-xl bg-teal-600 px-4 py-3 font-semibold text-white transition hover:bg-teal-700">
+          Confirmer la réservation
+        </button>
+
+        <!-- Message de confirmation / d'erreur : masqué au départ -->
+        <p id="message" class="mt-4 hidden rounded-lg bg-teal-50 p-3 text-sm text-teal-800" role="status"></p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500">MoveSpot, projet pédagogique. Aucune donnée n'est enregistrée.</footer>
+
+  <!-- data.js doit être chargé AVANT app.js -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 // ============================================================
 
 
+
 // ------------------------------------------------------------
 // ÉTAPE 0 : Découvrir les données
 // ------------------------------------------------------------
@@ -13,7 +14,9 @@
 //  - Que contient un cours ? Et un créneau ?
 //  - Comment accéder au prix du 2e cours ? Au 1er créneau du 3e cours ?
 // TODO : affichez `cours` dans la console avec console.log(), puis explorez-le.
-
+console.log(cours);
+console.log(cours[0].nom);
+console.log(cours[0].creneaux[0].occupes);
 
 // ------------------------------------------------------------
 // ÉTAPE 1 : Sélectionner les éléments du DOM
@@ -26,6 +29,15 @@
 // Question : quelle est la différence entre getElementById et querySelector ?
 
 
+
+
+
+
+
+
+
+
+
 // ------------------------------------------------------------
 // ÉTAPE 2 : État de l'application
 // ------------------------------------------------------------
@@ -34,6 +46,11 @@
 // Question : de quelles informations avez-vous besoin ?
 //  (cours choisi, créneau choisi, emplacements choisis...)
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
+// Sélectionner les éléments du DOM
+
+
+
+
 
 
 // ------------------------------------------------------------
@@ -47,6 +64,13 @@
 //  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------

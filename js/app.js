@@ -60,6 +60,23 @@ const message = document.getElementById('message');
 //  (cours choisi, créneau choisi, emplacements choisis...)
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
 // Sélectionner les éléments du DOM
+coursesContainer.innerHTML = "";
+
+cours.forEach(function (cours) {
+    coursesContainer.innerHTML += `
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-2 ring-teal-600 transition hover:shadow-md" data-id="yoga">
+            <img src="${cours.image}" alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${cours.categorie}</span>
+              <h3 class="text-lg font-semibold text-slate-900">${cours.nom}</h3>
+              <p class="text-sm text-slate-600">${cours.duree},${cours.coach}</p>
+              <p class="pt-1 text-base font-bold text-slate-900">${cours.prix} € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+
+    `;
+
+});
 
 
 

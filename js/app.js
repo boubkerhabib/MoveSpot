@@ -60,28 +60,6 @@ const message = document.getElementById('message');
 //  (cours choisi, créneau choisi, emplacements choisis...)
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
 // Sélectionner les éléments du DOM
-coursesContainer.innerHTML = "";
-
-cours.forEach(function (cours) {
-    coursesContainer.innerHTML += `
-          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-2 ring-teal-600 transition hover:shadow-md" data-id="yoga">
-            <img src="${cours.image}" alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
-            <div class="space-y-1 p-4">
-              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${cours.categorie}</span>
-              <h3 class="text-lg font-semibold text-slate-900">${cours.nom}</h3>
-              <p class="text-sm text-slate-600">${cours.duree},${cours.coach}</p>
-              <p class="pt-1 text-base font-bold text-slate-900">${cours.prix} € <span class="text-sm font-normal text-slate-500">par place</span></p>
-            </div>
-          </article>
-
-    `;
-
-});
-
-
-
-
-
 
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
@@ -94,6 +72,32 @@ cours.forEach(function (cours) {
 //  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
+coursesContainer.innerHTML = "";
+cours.forEach(function (item) {
+    coursesContainer.innerHTML += `
+          <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-md" data-id="${item.id}">
+            <img src="${item.image}" alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${item.categorie}</span>
+              <h3 class="text-lg font-semibold text-slate-900">${item.nom}</h3>
+              <p class="text-sm text-slate-600">${item.duree},${item.coach}</p>
+              <p class="pt-1 text-base font-bold text-slate-900">${item.prix} € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+
+    `;
+
+
+
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -115,7 +119,6 @@ cours.forEach(function (cours) {
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
 
-
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
 // ------------------------------------------------------------
@@ -126,6 +129,76 @@ cours.forEach(function (cours) {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
+let coursId;
+
+const coursCartes = document.querySelectorAll('#courses-container article');
+
+coursCartes.forEach(function (carte) {
+
+    carte.addEventListener('click', function () {
+
+        coursCartes.forEach(function (c) {
+            c.classList.remove('ring-2', 'ring-teal-600');
+        });
+
+        carte.classList.add('ring-2', 'ring-teal-600');
+
+        coursId = carte.dataset.id;
+        console.log(coursId);
+
+        const cour = cours.find(item => item.id === coursId);
+        selectedCourseTitle.textContent = cour.nom;
+
+        let temp = '';
+        cour.creneaux.forEach((c, index) => {
+            console.log(index);
+
+            temp += `
+                <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="${c.id}">
+                    ${c.jour} <span class="font-normal">${c.heure}</span>
+                </button>
+            `;
+        });
+
+
+        slotsContainer.innerHTML = temp;
+
+        const bouttonClick = document.querySelectorAll('#slots-container button');
+
+        bouttonClick.forEach(function (carteButton) {
+            carteButton.addEventListener('click', function () {
+
+            
+                bouttonClick.forEach(function (c) {
+                    c.classList.remove('bg-green-500','text-blue-600');
+                });
+
+                
+                carteButton.classList.add('bg-green-500','text-blue-600');
+                
+                const creneauId = carteButton.dataset.id;
+                console.log(creneauId);
+                
+
+                
+
+            });
+        });
+
+
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------

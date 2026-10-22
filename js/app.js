@@ -163,28 +163,7 @@ coursCartes.forEach(function (carte) {
 
         slotsContainer.innerHTML = temp;
 
-        const bouttonClick = document.querySelectorAll('#slots-container button');
-
-        bouttonClick.forEach(function (carteButton) {
-            carteButton.addEventListener('click', function () {
-
-            
-                bouttonClick.forEach(function (c) {
-                    c.classList.remove('bg-green-500','text-blue-600');
-                });
-
-                
-                carteButton.classList.add('bg-green-500','text-blue-600');
-                
-                const creneauId = carteButton.dataset.id;
-                console.log(creneauId);
-                
-
-                
-
-            });
-        });
-
+        
 
     });
 });

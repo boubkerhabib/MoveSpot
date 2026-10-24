@@ -129,6 +129,18 @@ cours.forEach(function (item) {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
+// ------------------------------------------------------------
+// ÉTAPE 6 : Afficher le plan de la salle (US04)
+// ------------------------------------------------------------
+// TODO : générez les 30 emplacements (5 rangées x 6 tapis) avec des boucles.
+//  - Identifiants attendus : A1, A2... A6, B1... E6.
+//  - Les emplacements présents dans `occupes` du créneau choisi doivent être
+//    visuellement différents et NON sélectionnables.
+// Questions :
+//  - Comment construire "A1" à partir d'une rangée et d'un numéro ?
+//  - Comment savoir si un emplacement est dans la liste des occupés (includes) ?
+//  - Faut-il une boucle imbriquée ? Pourquoi ?
+
 let coursId;
 
 const coursCartes = document.querySelectorAll('#courses-container article');
@@ -146,46 +158,73 @@ coursCartes.forEach(function (carte) {
         coursId = carte.dataset.id;
         console.log(coursId);
 
-        const cour = cours.find(item => item.id === coursId);
+        const cour = cours.find(function (item) {
+            return item.id === coursId;
+        });
+
         selectedCourseTitle.textContent = cour.nom;
 
         let temp = '';
-        cour.creneaux.forEach((c, index) => {
+
+        cour.creneaux.forEach(function (c, index) {
             console.log(index);
 
             temp += `
-                <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="${c.id}">
-                    ${c.jour} <span class="font-normal">${c.heure}</span>
+                <button
+                    type="button"
+                    class="rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600"
+                    data-id="${c.id}">
+                    ${c.jour}
+                    <span class="font-normal">${c.heure}</span>
                 </button>
             `;
         });
 
-
         slotsContainer.innerHTML = temp;
 
         const bouttonClick = document.querySelectorAll('#slots-container button');
-
         bouttonClick.forEach(function (carteButton) {
+
             carteButton.addEventListener('click', function () {
 
-            
                 bouttonClick.forEach(function (c) {
-                    c.classList.remove('bg-green-500','text-blue-600');
+                    c.classList.remove('bg-teal-600', 'text-white');
+                    c.classList.add('bg-white', 'text-slate-800');
                 });
 
-                
-                carteButton.classList.add('bg-green-500','text-blue-600');
-                
+                carteButton.classList.remove('bg-white', 'text-slate-800');
+                carteButton.classList.add('bg-teal-600', 'text-white');
+
                 const creneauId = carteButton.dataset.id;
-                console.log(creneauId);
-                
 
-                
+                const creneauSelectionne = cour.creneaux.find(function (c) {
+                    return c.id === creneauId;
+                });
 
+                console.log(creneauSelectionne);
+
+                seatsContainer.innerHTML = '';
+
+                rangees.forEach(function (rangee) {
+
+                    for (let t = 1; t <= tapisParRangee; t++) {
+
+                        const tapisId = rangee + t;
+
+                        seatsContainer.innerHTML += `
+                            <button
+                                type="button"
+                                class="seat h-11 rounded-lg text-xs font-semibold transition border border-slate-300 bg-back text-slate-700 hover:border-teal-600"
+                                data-id="${tapisId}"
+                                aria-label="Tapis ${tapisId} libre">
+                                ${tapisId}
+                            </button>
+                        `;
+
+                    }
+                });
             });
         });
-
-
     });
 });
 
@@ -201,17 +240,7 @@ coursCartes.forEach(function (carte) {
 
 
 
-// ------------------------------------------------------------
-// ÉTAPE 6 : Afficher le plan de la salle (US04)
-// ------------------------------------------------------------
-// TODO : générez les 30 emplacements (5 rangées x 6 tapis) avec des boucles.
-//  - Identifiants attendus : A1, A2... A6, B1... E6.
-//  - Les emplacements présents dans `occupes` du créneau choisi doivent être
-//    visuellement différents et NON sélectionnables.
-// Questions :
-//  - Comment construire "A1" à partir d'une rangée et d'un numéro ?
-//  - Comment savoir si un emplacement est dans la liste des occupés (includes) ?
-//  - Faut-il une boucle imbriquée ? Pourquoi ?
+
 
 
 // ------------------------------------------------------------
@@ -264,3 +293,4 @@ coursCartes.forEach(function (carte) {
 // ------------------------------------------------------------
 // Comment partager la liste des réservations confirmées entre deux pages
 // sans rien enregistrer durablement ? Réfléchissez aux options et à leurs limites.
+
